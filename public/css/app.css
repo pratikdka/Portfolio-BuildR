@@ -23,6 +23,18 @@
   line-height: 100px;
 }
 
+.right-align-link {
+  position: absolute;
+  top: 45px;
+  right: 60px;
+  color: white;
+  text-decoration: none;
+}
+
+.right-align-link:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 420px) {
   .nav-flex .brand-text { font-size: 18px; }
 }

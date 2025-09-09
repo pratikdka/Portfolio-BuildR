@@ -1,24 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Portfolio BuildR</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <link rel="stylesheet" href="/css/app.css" />
-  </head>
-  <body>
+</head>
+
+<body>
+    <script src="/js/mailController.js"></script>
     <nav class="overall-nav">
-      <div class="nav-wrapper blue darken-3">
-        <a href="/" class="brand-logo">
-          <img src="/images/logo.png" alt="Portfolio BuildR logo" />
-        </a>
-        <span class="brand-text">Create Porfolio Now</span>
-      </div>
+        <div class="nav-wrapper blue darken-3">
+            <a href="/" class="brand-logo">
+                <img src="/images/logo.png" alt="Portfolio BuildR logo" />
+            </a>
+            <a href="/form" class="brand-text right-align-link">Create Portfolio Now</a>
+        </div>
     </nav>
-    <div class="container" style="margin-top: 30px">
-      <h4>Welcome to Portfolio BuildR</h4>
+
+    <!--Feedback Section-->
+    <div class="container" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col s12 m6">
+                <h4>Welcome to Portfolio BuildR</h4>
+                <form class="col s12" onsubmit="handleMailTo(event)">
+                    <h5>Send Us your Feedback</h5>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="first_name" type="text" class="validate" />
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" type="text" class="validate" />
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="feedback" class="materialize-textarea"></textarea>
+                            <label for="feedback">Your Feedback</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn blue darken-3">
+                        Submit Feedback
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-  </body>
+
+
+</body>
+
 </html>
