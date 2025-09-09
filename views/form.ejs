@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Your Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h4 class="center-align">Portfolio BuildR - User Form</h4>
+
+      <form action="/submit" method="POST">
+        <div class="input-field">
+          <input id="fullName" name="fullName" type="text" required />
+          <label for="fullName">Full Name</label>
+        </div>
+
+        <div class="input-field">
+          <input id="email" name="email" type="email" required />
+          <label for="email">Email</label>
+        </div>
+
+        <div class="input-field">
+          <input id="title" name="title" type="text" />
+          <label for="title">Position</label>
+        </div>
+
+        <div class="input-field">
+          <textarea id="bio" name="bio" class="materialize-textarea"></textarea>
+          <label for="bio">Short Bio</label>
+        </div>
+
+        <div class="input-field">
+          <input
+            id="skills"
+            name="skills"
+            type="text"
+            placeholder="e.g., HTML, CSS, Node.js"
+          />
+          <label for="skills">Skills (comma-separated)</label>
+        </div>
+
+        <div class="input-field">
+          <input id="projectTitle" name="projectTitle" type="text" />
+          <label for="projectTitle">Project Title</label>
+        </div>
+
+        <div class="input-field">
+          <textarea
+            id="projectDesc"
+            name="projectDesc"
+            class="materialize-textarea"
+          ></textarea>
+          <label for="projectDesc">Project Description</label>
+        </div>
+
+        <div class="input-field">
+          <input id="github" name="github" type="url" />
+          <label for="github">GitHub Profile</label>
+        </div>
+
+        <div class="input-field">
+          <input id="linkedin" name="linkedin" type="url" />
+          <label for="linkedin">LinkedIn Profile</label>
+        </div>
+
+        <div class="center-align">
+          <button type="submit" class="btn waves-effect waves-light">
+            Generate Portfolio
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
