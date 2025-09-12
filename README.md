@@ -3,7 +3,7 @@ SIT725 group project for building a portfolio generator using Node.js, Express, 
 
 ## Team Members
 - Pratik Khadka
-- Abhishek
+- Abhishek Acharya
 
 ---
 ## Features
