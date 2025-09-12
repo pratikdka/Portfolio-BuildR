@@ -16,11 +16,11 @@ router.post('/submit', (req, res) => {
     linkedin
   } = req.body;
 
-  // For now, just console log the data and redirect to home
+  // For now, just loging the data and redirecting it to home
   console.log("Form Data Received:");
   console.log(req.body);
 
-  // You can render a portfolio view or redirect
+  // Rendering a portfolio view or redirect
   res.send(`
     <h2>Thank you ${fullName}!</h2>
     <p>Your portfolio has been generated.</p>
