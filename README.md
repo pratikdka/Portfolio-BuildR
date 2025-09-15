@@ -11,7 +11,9 @@ SIT725 group project for building a portfolio generator using Node.js, Express, 
 - Clean Materialize CSS UI for form
 - Express.js backend with POST route for form submission
 - Modular route and controller structure
+- MongoDB(Mongoose) integration to save portfolio data
 - EJS for dynamic page rendering
+- Consistent UI in each page
 - Handles form submission locally
 
 ---
@@ -20,18 +22,19 @@ SIT725 group project for building a portfolio generator using Node.js, Express, 
 portfolio-buildr/
 │
 ├── public/
-│ ├── css/
-│ ├── js/
-│ └── images/
+│   ├── css/
+│   ├── js/
+│   └── images/
 │
 ├── views/
-│ ├── index.ejs
-│ └── form.ejs
-│
-├── controllers/
+│   ├── index.ejs
+│   └── form.ejs
 │
 ├── routes/
-│ └── index.js
+│   └── form.js
+│
+├── models/
+│   └── Portfolio.js
 │
 ├── .env
 ├── .gitignore
