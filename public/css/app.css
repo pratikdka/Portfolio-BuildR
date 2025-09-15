@@ -35,6 +35,21 @@
   text-decoration: underline;
 }
 
+.feedback-wrapper {
+  min-height: 80vh;              
+  display: flex;
+  justify-content: center;    
+  align-items: center;          
+}
+
+.feedback-card {
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 420px) {
   .nav-flex .brand-text { font-size: 18px; }
 }
