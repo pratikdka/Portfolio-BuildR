@@ -7,9 +7,28 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <style>
+      .form-container {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 25px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .btn-black {
+        margin-left: 0px;
+        margin-top: 40px;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
+      <a href="/" class="btn blue darken-1 waves-effect waves-light btn-black"
+        >Back
+      </a>
+    </div>
+    <div class="form-container">
       <h4 class="center-align">Portfolio BuildR - User Form</h4>
 
       <form action="/submit" method="POST">
@@ -74,6 +93,22 @@
         </div>
       </form>
     </div>
+
+    <footer
+      style="
+        background: #1565c0;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      "
+    >
+      <p>© 2025 Portfolio BuildR</p>
+      <p style="font-size: 14px">Made by our SIT725 Protfolio BuildR Team</p>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
