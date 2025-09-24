@@ -89,15 +89,29 @@
 
   <body>
     <script src="/js/mailController.js"></script>
-    <nav class="overall-nav">
-      <div class="nav-wrapper blue darken-3">
-        <a href="/" class="brand-logo">
-          <img src="/images/logo.png" alt="Portfolio BuildR logo" />
+    <nav class="overall-nav blue darken-3">
+    <div class="nav-wrapper" style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+        <!-- Logo left -->
+        <a href="/" style="display: flex; align-items: center;">
+        <img src="/images/logo.png" alt="Portfolio BuildR logo" style="height: 220px; border-radius: 100px;" />
+        <span style="margin-left: 10px; font-weight: bold; font-size: 1.3rem; color: white;">Portfolio BuildR</span>
         </a>
-        <a href="/form" class="brand-text right-align-link"
-          >Create Portfolio Now</a
-        >
-      </div>
+
+        <!-- Buttons right -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="/form"
+            class="btn waves-effect waves-light green lighten-1"
+            style="border-radius: 20px;">
+            Create Portfolio Now
+        </a>
+        <button id="toggleBtn"
+                onclick="toggleMode()"
+                class="btn waves-effect waves-light grey darken-3"
+                style="border-radius: 20px;">
+            🌓
+        </button>
+        </div>
+    </div>
     </nav>
 
     <!-- Carousel Section-->
@@ -174,5 +188,6 @@
         </div>
     </div>
     </footer>
+    <script src="/js/themeController.js"></script>
   </body>
 </html>
