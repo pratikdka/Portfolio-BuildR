@@ -10,6 +10,8 @@
     <style>
         .carousel {
             height: 500px !important;
+            border-radius: 20px;
+            overflow: hidden;
         }
         .carousel .carousel-item {
             display: flex;
@@ -49,12 +51,29 @@
             color: #fff;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-        /* Hover zoom for carousel items */
-        .carousel .carousel-item:hover {
-            transform: scale(1.05);
+        .zoom-card {
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .zoom-card:hover{
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rbga(0,0,0,0.3);
+            background: rbga(255,255,255,0.05);
+        }
+        /* footer at bottom */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            flex: 1 0 auto;
+        }
+
+        .page-footer {
+            margin-top: auto;
         }
 
         @keyframes fadeInDown {
@@ -88,11 +107,13 @@
           <div class="carousel carousel-slider center">
             <!-- Slide 1 -->
             <div class="carousel-item blue white-text" href="#one!">
-              <h2>🚀 Stunning Portfolios</h2>
-              <p>
-                See how Portfolio BuildR transforms your data into a
-                professional profile.
-              </p>
+                <div class="zoom-card">
+                    <h2>🚀 Stunning Portfolios</h2>
+                    <p>
+                        See how Portfolio BuildR transforms your data into a
+                        professional profile.
+                    </p>
+                </div>
             </div>
 
             <!-- User Review 1 -->
@@ -138,5 +159,20 @@
             }, 5000);
         });
     </script>
+    <!-- Footer -->
+    <footer class="page-footer blue darken-3">
+    <div class="container">
+        <div class="row">
+        <div class="col s12 center-align">
+            <p class="white-text">
+            © 2025 Portfolio BuildR — Made by Team Portfolio BuildR SIT725
+            </p>
+            <a href="https://trello.com/b/gTDsjXFF/portfolio-buildr" target="_blank" class="white-text">
+            Project Trello Board Link
+            </a>
+        </div>
+        </div>
+    </div>
+    </footer>
   </body>
 </html>
