@@ -49,6 +49,13 @@
             color: #fff;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
+        /* Hover zoom for carousel items */
+        .carousel .carousel-item:hover {
+            transform: scale(1.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+        }
 
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); }
