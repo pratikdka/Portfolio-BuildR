@@ -4,6 +4,9 @@ const path = require("path");
 const mongoose = require("mongoose");
 const formRoute = require("./routes/formRoute");
 
+const feedbackRoute = require("./routes/feedbackRoute");
+app.use("/feedback", feedbackRoute);
+
 mongoose
   .connect("mongodb://localhost:27017/porfolioBuildRDB", {})
   .then(() => console.log("MongoDB Connected"))
