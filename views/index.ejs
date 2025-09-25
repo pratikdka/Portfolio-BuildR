@@ -1,25 +1,163 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Portfolio BuildR</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <link rel="stylesheet" href="/css/app.css" />
-</head>
+    <style>
+        .carousel {
+            height: 500px !important;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .carousel .carousel-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            color: #fff;
+        }
 
-<body>
+        /* Gradient backgrounds */
+        .carousel .blue { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+        .carousel .teal { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .carousel .purple { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
+        .carousel .pink { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+
+        /* Animations */
+        .carousel h2 {
+            font-weight: 700;
+            animation: fadeInDown 1s ease;
+        }
+        .carousel p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-top: 10px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        /* Simple Review Card */
+        .review-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .zoom-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .zoom-card:hover{
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rbga(0,0,0,0.3);
+            background: rbga(255,255,255,0.05);
+        }
+        /* footer at bottom */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            flex: 1 0 auto;
+        }
+
+        .page-footer {
+            margin-top: auto;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+  </head>
+
+  <body>
     <script src="/js/mailController.js"></script>
-    <nav class="overall-nav">
-        <div class="nav-wrapper blue darken-3">
-            <a href="/" class="brand-logo">
-                <img src="/images/logo.png" alt="Portfolio BuildR logo" />
-            </a>
-            <a href="/form" class="brand-text right-align-link">Create Portfolio Now</a>
+    <nav class="overall-nav blue darken-3">
+    <div class="nav-wrapper" style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+        <!-- Logo left -->
+        <a href="/" style="display: flex; align-items: center;">
+        <img src="/images/logo.png" alt="Portfolio BuildR logo" style="height: 220px; border-radius: 100px;" />
+        <span style="margin-left: 10px; font-weight: bold; font-size: 1.3rem; color: white;">Portfolio BuildR</span>
+        </a>
+
+        <!-- Buttons right -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="/form"
+            class="btn waves-effect waves-light green lighten-1"
+            style="border-radius: 20px;">
+            Create Portfolio Now
+        </a>
+        <button id="toggleBtn"
+                onclick="toggleMode()"
+                class="btn waves-effect waves-light grey darken-3"
+                style="border-radius: 20px;">
+            🌓
+        </button>
         </div>
+    </div>
     </nav>
 
+    <!-- Carousel Section-->
+    <div class="container" style="margin-top: 30px">
+      <div class="row">
+        <div class="col s12">
+          <div class="carousel carousel-slider center">
+            <!-- Slide 1 -->
+            <div class="carousel-item blue white-text" href="#one!">
+                <div class="zoom-card">
+                    <h2>🚀 Stunning Portfolios</h2>
+                    <p>
+                        See how Portfolio BuildR transforms your data into a
+                        professional profile.
+                    </p>
+                </div>
+            </div>
+
+            <!-- User Review 1 -->
+            <div class="carousel-item teal white-text" href="#two!">
+              <h2>💬 User Reviews</h2>
+              <div class="review-card">
+                <p>"This app made building my portfolio super easy!"<br><strong>- Sarah K.</strong></p>
+              </div>
+            </div>
+
+            <!-- User Review 2 -->
+            <div class="carousel-item purple white-text" href="#three!">
+              <h2>🌟 Happy Users</h2>
+              <div class="review-card">
+                <p>"The PDF export feature was exactly what I needed."<br><strong>- James L.</strong></p>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-item pink white-text" href="#four!">
+              <h2>🎨 Beautiful Designs</h2>
+              <p>Custom templates built to highlight your strengths.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--Feedback Section-->
-    <div class="container" style="margin-top: 30px;">
+        <div class="container" style="margin-top: 30px;">
         <div class="row">
             <div class="col s12 m6">
                 <h4>Welcome to Portfolio BuildR</h4>
@@ -47,9 +185,37 @@
                 </form>
             </div>
         </div>
+        </div>
+          
+    <!-- Scripts for Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const elems = document.querySelectorAll('.carousel');
+            M.Carousel.init(elems, {
+                fullWidth: true,
+                indicators: true
+            });
+            // Auto-slide every 5s
+            setInterval(function () {
+                const instance = M.Carousel.getInstance(document.querySelector('.carousel'));
+                instance.next();
+            }, 5000);
+        });
+    </script>
+    <!-- Footer -->
+    <footer class="page-footer blue darken-3">
+    <div class="container">
+        <div class="row">
+        <div class="col s12 center-align">
+            <p class="white-text">
+            © 2025 Portfolio BuildR — Made by Team Portfolio BuildR SIT725
+            </p>
+        </div>
+        </div>
     </div>
-
-
-</body>
-
+    </footer>
+    <script src="/js/themeController.js"></script>
+  </body>
 </html>
