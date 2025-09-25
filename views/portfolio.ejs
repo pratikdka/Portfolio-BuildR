@@ -98,6 +98,21 @@
       visibility: hidden !important;
     }
   }
+
+  @media print {
+  body {
+    zoom: 0.75; /* shrink content to fit */
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .portfolio-container {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+}
+  
 </style>
 
   </style>
