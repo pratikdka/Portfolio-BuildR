@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const feedbackRoute = require("./routes/feedbackRoute");
+
 
 // Connect DB
 mongoose.connect("mongodb://localhost:27017/porfolioBuildRDB")
@@ -13,6 +15,7 @@ mongoose.connect("mongodb://localhost:27017/porfolioBuildRDB")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use("/feedback", feedbackRoute);
 
 app.use(session({
   secret: "superSecretKey",
