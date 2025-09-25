@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const Portfolio = require("../models/Portfolio");
 
-// Storage engine for image upload
+// Storage engine
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/uploads");
@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// POST route to handle form submission with image upload
+// Handle form submission
 router.post("/submit", upload.single("image"), async (req, res) => {
   const {
     fullName,
@@ -40,6 +40,8 @@ router.post("/submit", upload.single("image"), async (req, res) => {
         }))
       : [{ title: projectTitle, description: projectDesc }];
 
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
+
     const newPortfolio = new Portfolio({
       fullName,
       email,
@@ -53,10 +55,9 @@ router.post("/submit", upload.single("image"), async (req, res) => {
     });
 
     await newPortfolio.save();
-    console.log("Form Data Saved:", newPortfolio);
 
-    // Render the portfolio view with all dynamic data
-    res.render("portfolio", {
+    // Save data in session for PDF download
+    req.session.portfolio = {
       fullName,
       email,
       title,
@@ -64,12 +65,14 @@ router.post("/submit", upload.single("image"), async (req, res) => {
       skills: skillArray,
       github,
       linkedin,
-      image: req.file ? `/uploads/${req.file.filename}` : null,
+      image,
       projects: projectArray,
-    });
+    };
+
+    res.render("portfolio", req.session.portfolio);
   } catch (err) {
     console.error("Error saving portfolio:", err);
-    res.status(500).send("Error saving portfolio data. Please try again.");
+    res.status(500).send("Error saving portfolio data.");
   }
 });
 
