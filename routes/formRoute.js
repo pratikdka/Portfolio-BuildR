@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const Portfolio = require("../models/Portfolio");
 
 // Storage engine
@@ -40,8 +41,15 @@ router.post("/submit", upload.single("image"), async (req, res) => {
         }))
       : [{ title: projectTitle, description: projectDesc }];
 
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+    // Convert uploaded image to Base64 if exists
+    let imageBase64 = null;
+    if (req.file) {
+      const filePath = path.join("public/uploads", req.file.filename);
+      const fileData = fs.readFileSync(filePath);
+      imageBase64 = `data:${req.file.mimetype};base64,${fileData.toString("base64")}`;
+    }
 
+    // Save to DB (imageBase64 is not stored, but you can extend schema if needed)
     const newPortfolio = new Portfolio({
       fullName,
       email,
@@ -65,7 +73,7 @@ router.post("/submit", upload.single("image"), async (req, res) => {
       skills: skillArray,
       github,
       linkedin,
-      image,
+      image: imageBase64,
       projects: projectArray,
     };
 
