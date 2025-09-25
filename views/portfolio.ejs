@@ -143,6 +143,25 @@
 
       </div>
     </div>
+    <!-- DOWNLOAD BUTTON SECTION -->
+    <div class="download-btn-container">
+        <form action="/download" method="POST">
+          <input type="hidden" name="fullName" value="<%= fullName %>">
+          <input type="hidden" name="title" value="<%= title %>">
+          <input type="hidden" name="email" value="<%= email %>">
+          <input type="hidden" name="bio" value="<%= bio %>">
+          <input type="hidden" name="github" value="<%= github %>">
+          <input type="hidden" name="linkedin" value="<%= linkedin %>">
+          <input type="hidden" name="image" value="<%= image %>">
+          <% skills.forEach(skill => { %>
+          <input type="hidden" name="skills[]" value="<%= skill %>">
+          <% }); %>
+          <% projects.forEach(project => { %>
+          <input type="hidden" name="projects[]" value='<%- JSON.stringify(project) %>'>
+          <% }); %>
+          <button type="submit">📥 Download as PDF</button>
+        </form>
+    </div>
   </div>
 </body>
 </html>
