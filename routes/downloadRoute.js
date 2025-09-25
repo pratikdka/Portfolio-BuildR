@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const ejs = require("ejs");
 const path = require("path");
-const fs = require("fs");
 const puppeteer = require("puppeteer");
 
 router.post("/download", async (req, res) => {
@@ -19,18 +18,37 @@ router.post("/download", async (req, res) => {
       data
     );
 
-    // Launch puppeteer and create PDF
+    // Launch puppeteer
     const browser = await puppeteer.launch({
       headless: "new",
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
     const page = await browser.newPage();
 
     // Load HTML content
     await page.setContent(html, { waitUntil: "networkidle0" });
 
-    // Save PDF
-    const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
+    // Force screen media (so it looks like browser, not print mode)
+    await page.emulateMediaType("print");
+
+    // Inject CSS to hide download button in PDF
+    await page.addStyleTag({
+      content: `
+        @media print {
+          .download-btn-container {
+            display: none !important;
+          }
+        }
+      `,
+    });
+
+    // Generate PDF
+    const pdfBuffer = await page.pdf({
+      format: "A4",
+      printBackground: true,
+      preferCSSPageSize: true,
+      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    });
 
     await browser.close();
 
