@@ -77,7 +77,7 @@ router.post("/submit", upload.single("image"), async (req, res) => {
       projects: projectArray,
     };
 
-    res.render("portfolio", req.session.portfolio);
+    res.render("portfolio", { ...req.session.portfolio, theme: "theme-light" });
   } catch (err) {
     console.error("Error saving portfolio:", err);
     res.status(500).send("Error saving portfolio data.");
