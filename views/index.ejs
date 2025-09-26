@@ -7,69 +7,23 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <link rel="stylesheet" href="/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        .carousel {
-            height: 500px !important;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-        .carousel .carousel-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
-            color: #fff;
-        }
-
-        /* Gradient backgrounds */
-        .carousel .blue { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-        .carousel .teal { background: linear-gradient(135deg, #11998e, #38ef7d); }
-        .carousel .purple { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
-        .carousel .pink { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
-
-        /* Animations */
-        .carousel h2 {
-            font-weight: 700;
-            animation: fadeInDown 1s ease;
-        }
-        .carousel p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-top: 10px;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        /* Simple Review Card */
-        .review-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 20px;
-            color: #fff;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        .zoom-card {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border-radius: 15px;
-            padding: 20px;
-        }
-        .zoom-card:hover{
-            transform: scale(1.08);
-            box-shadow: 0 12px 30px rbga(0,0,0,0.3);
-            background: rbga(255,255,255,0.05);
-        }
         /* footer at bottom */
         html, body {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+          height: 100%;
+          margin: 0;
+          padding: 0;
         }
 
         body {
-            flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        }
+
+        main {
+          flex: 1;
         }
 
         .page-footer {
@@ -112,66 +66,145 @@
         </div>
     </div>
     </nav>
+<!-- Unified Hero + Features + Stats -->
+<section class="hero-section">
+  <div class="container hero"
+    style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px; margin-bottom: 100px;">
 
-    <!-- Carousel Section-->
-    <div class="container" style="margin-top: 30px">
-      <div class="row">
-        <div class="col s12">
-          <div class="carousel carousel-slider center">
-            <!-- Slide 1 -->
-            <div class="carousel-item blue white-text" href="#one!">
-                <div class="zoom-card">
-                    <h2>🚀 Stunning Portfolios</h2>
-                    <p>
-                        See how Portfolio BuildR transforms your data into a
-                        professional profile.
-                    </p>
-                </div>
-            </div>
-
-            <!-- User Review 1 -->
-            <div class="carousel-item teal white-text" href="#two!">
-              <h2>💬 User Reviews</h2>
-              <div class="review-card">
-                <p>"This app made building my portfolio super easy!"<br><strong>- Sarah K.</strong></p>
-              </div>
-            </div>
-
-            <!-- User Review 2 -->
-            <div class="carousel-item purple white-text" href="#three!">
-              <h2>🌟 Happy Users</h2>
-              <div class="review-card">
-                <p>"The PDF export feature was exactly what I needed."<br><strong>- James L.</strong></p>
-              </div>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="carousel-item pink white-text" href="#four!">
-              <h2>🎨 Beautiful Designs</h2>
-              <p>Custom templates built to highlight your strengths.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Left Text -->
+    <div class="fade-in-down" style="flex: 1; min-width: 320px;">
+      <h2 class="hero-title">
+        Build Your Professional Portfolio
+      </h2>
+      <p class="hero-subtitle">
+        Create a stunning portfolio to showcase your work and skills.
+      </p>
+      <a href="/form" style="
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #43a047, #2e7d32);
+          color: #fff;
+          text-decoration: none;
+          border-radius: 50px; 
+          padding: 14px 45px; 
+          font-size: 1.1rem; 
+          font-weight: 600;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+          transition: all 0.4s ease, background-position 0.4s ease;
+          background-size: 200% 200%;
+        " 
+        onmouseover="this.style.transform='scale(1.08)'; 
+                      this.style.boxShadow='0 0 20px rgba(67,160,71,0.7)'; 
+                      this.style.background='linear-gradient(315deg, #43a047, #2e7d32)';" 
+        onmouseout="this.style.transform='scale(1)'; 
+                    this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'; 
+                    this.style.background='linear-gradient(135deg, #43a047, #2e7d32)';">
+        GET STARTED
+      </a>
     </div>
-          
-    <!-- Scripts for Carousel -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const elems = document.querySelectorAll('.carousel');
-            M.Carousel.init(elems, {
-                fullWidth: true,
-                indicators: true
-            });
-            // Auto-slide every 5s
-            setInterval(function () {
-                const instance = M.Carousel.getInstance(document.querySelector('.carousel'));
-                instance.next();
-            }, 5000);
-        });
-    </script>
+
+    <!-- Right Illustration -->
+    <div class="fade-in-up" style="flex: 1; min-width: 320px; text-align: center;">
+      <img src="/images/homepage.png" alt="Portfolio illustration"
+        style="max-width: 90%; height: auto; min-width: 300px; border-radius: 30px;" />
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features">
+    <div class="feature-card">
+      <h5>⚡ Quick Setup</h5>
+      <p>Create a portfolio in minutes with our simple form builder.</p>
+    </div>
+
+    <div class="feature-card">
+      <h5>🎨 Beautiful Designs</h5>
+      <p>Modern templates that make your portfolio stand out instantly.</p>
+    </div>
+
+    <div class="feature-card">
+      <h5>📱 Responsive</h5>
+      <p>Your portfolio looks amazing on any device, big or small.</p>
+    </div>
+  </div>
+  <!-- Stats -->
+  <div class="stats fade-in-up"
+    style="margin-top: 80px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; text-align: center; font-family: 'Inter', sans-serif;">
+    <div>
+      <h2 class="counter" data-target="1200"
+        style="font-size: 2.2rem; font-weight: 700; color:#2e7d32; margin-bottom: 6px;">
+        0
+      </h2>
+      <p style="font-size: 1rem; color: #444; font-weight: 500;">Portfolios Created</p>
+    </div>
+    <div>
+      <h2 class="counter" data-target="300"
+        style="font-size: 2.2rem; font-weight: 700; color:#2e7d32; margin-bottom: 6px;">
+        0
+      </h2>
+      <p style="font-size: 1rem; color: #444; font-weight: 500;">Happy Users</p>
+    </div>
+    <div>
+      <h2 class="counter" data-target="60"
+        style="font-size: 2.2rem; font-weight: 700; color:#2e7d32; margin-bottom: 6px;">
+        0
+      </h2>
+      <p style="font-size: 1rem; color: #444; font-weight: 500;">Seconds to Setup</p>
+    </div>
+  </div>
+</section>
+
+<!-- Animation + Counter Script -->
+<script>
+  // Fade in when visible
+  const fadeElems = document.querySelectorAll('.fade-in-down, .fade-in-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = entry.target.classList.contains('fade-in-down')
+          ? 'fadeInDown 1s forwards'
+          : 'fadeInUp 1s forwards';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  fadeElems.forEach(el => observer.observe(el));
+
+  // Counter Animation
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200;
+
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const updateCount = () => {
+        const count = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+        if (count < target) {
+          counter.innerText = count + increment;
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        counterObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  counters.forEach(counter => counterObserver.observe(counter));
+</script>
+
     <!-- Footer -->
     <footer class="page-footer blue darken-3">
     <div class="container">
