@@ -15,7 +15,7 @@ router.post("/download", async (req, res) => {
     // Render EJS to HTML
     const html = await ejs.renderFile(
       path.join(__dirname, "../views/portfolio.ejs"),
-      data
+      { ...data, theme: req.body.theme || "theme-light" }
     );
 
     // Launch puppeteer

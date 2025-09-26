@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><%= fullName %> - Portfolio</title>
   <link rel="stylesheet" href="/css/app.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -17,14 +18,12 @@
       display: flex;
       max-width: 1000px;
       margin: auto;
-      background: white;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     .sidebar {
-      background-color: #f7f7f7;
       padding: 2rem;
       width: 35%;
       text-align: center;
@@ -135,10 +134,9 @@
   
 </style>
 
-  </style>
 </head>
 <body>
-  <div class="portfolio-container">
+  <div class="portfolio-container <%= theme || 'theme-light' %>">
     <div class="sidebar">
       <% if (image) { %>
         <img src="<%= image %>" alt="Profile Image" class="profile-img" />
@@ -187,6 +185,19 @@
 
       </div>
     </div>
+
+    <!-- THEME SELECTOR -->
+    <div class="theme-selector" style="text-align:center; margin: 20px;">
+        <label for="theme">🎨 Select Theme:</label>
+          <select id="theme">
+            <option value="theme-light">Light</option>
+            <option value="theme-dark">Dark</option>
+            <option value="theme-blue">Blue</option>
+            <option value="theme-green">Green</option>
+            <option value="theme-purple">Purple</option>
+          </select>
+    </div>
+
     <!-- DOWNLOAD BUTTON SECTION -->
     <div class="download-btn-container">
         <form action="/download" method="POST">
@@ -203,9 +214,11 @@
           <% projects.forEach(project => { %>
           <input type="hidden" name="projects[]" value='<%- JSON.stringify(project) %>'>
           <% }); %>
+          <input type="hidden" id="selectedTheme" name="theme" value="theme-light">
           <button type="submit" class="download-btn">Download as PDF</button>
         </form>
     </div>
   </div>
+    <script src="/js/themeSelector.js"></script>
 </body>
 </html>
