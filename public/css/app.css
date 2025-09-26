@@ -1,6 +1,8 @@
 :root {
   --bg-color: #ffffff;
   --text-color: #212529;
+  --card-bg: #ffffff;
+  --section-bg: #f5f9ff;
   --btn-bg: #43a047;      
   --btn-bg-alt: #333;     
   --btn-text: #ffffff;
@@ -8,30 +10,47 @@
 body.dark-mode {
   --bg-color: #121212;
   --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --section-bg: #1a1a1a;
   --btn-bg: #2e7d32;   
   --btn-bg-alt: #f5f5f5;  
   --btn-text: #121212;  
+}
+section {
+  background: var(--section-bg);
 }
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', sans-serif;
 }
 .overall-nav {
-  height: 180px;
-  overflow: hidden;
+  background-color: #1565c0;
+  height: 135px;
+  /* overflow: hidden; */
+  display: flex;
+  padding: 0 30px;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 .nav-wrapper {
-  height: 150px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 40px;
+  width: 100%;
+  padding: 0 0px; 
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 .brand-logo img {
-  height: 260px;
+  height: 200px;
+  width: auto;
   border-radius: 150px;
+  object-fit: cover;
 
 }
 .brand-text {
@@ -54,20 +73,6 @@ body {
   text-decoration: underline;
 }
 
-.feedback-wrapper {
-  min-height: 80vh;              
-  display: flex;
-  justify-content: center;    
-  align-items: center;          
-}
-
-.feedback-card {
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
 .create-btn {
   border-radius: 20px;
   padding: 8px 20px;
@@ -87,6 +92,89 @@ body {
 }
 .toggle-btn:hover{
   background-color: #555;
+}
+.hero-subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+.hero-title {
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+.hero-section {
+  padding: 100px 20px;
+  background: var(--section-bg);
+}
+/* Feature Cards */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 60px 0;
+}
+
+.feature-card {
+  background: var(--card-bg);
+  color: var(--text-color);
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.feature-card h5 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: var(--text-color);
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Hover Effect */
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.25);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+}
+
+/* Stats Section */
+.stats {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.stats h2 {
+  color: var(--text-color);
+  font-size: 2.6rem;
+  color: #2e7d32;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.stats p {
+  color: var(--text-color);
+  font-size: 1rem;
+  color: #444;
+  font-weight: 500;
 }
 
 @media (max-width: 420px) {
