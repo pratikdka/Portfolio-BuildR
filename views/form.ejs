@@ -88,6 +88,16 @@
       background-color: #f5f5f5;
       color: #121212;
     }
+
+    input:invalid:focus,
+    textarea:invalid:focus {
+      border: 2px solid red;
+    }
+
+    input:valid:focus,
+    textarea:valid:focus {
+      border: 2px solid green;
+    }
   </style>
 </head>
 <body>
@@ -102,10 +112,15 @@
     <div class="card mx-auto p-4" style="max-width: 800px;">
       <h2 class="text-center mb-4">Portfolio BuildR - User Form</h2>
 
-      <form action="/submit" method="POST" enctype="multipart/form-data" id="portfolioForm">
+      <form action="/submit" method="POST" enctype="multipart/form-data" id="portfolioForm" novalidate>
         <div class="mb-3">
           <label class="form-label">Full Name</label>
-          <input type="text" name="fullName" class="form-control" required />
+          <input type="text" name="fullName" class="form-control" required 
+          pattern="^[A-Za-z]+(?:\s[A-Za-z]+)+$" 
+          title="Enter first and last name using letters only"/>
+          <div class="invalid-feedback">
+            Please enter your first and last name (letters only).
+          </div>
         </div>
 
         <div class="mb-3">
@@ -115,7 +130,12 @@
 
         <div class="mb-3">
           <label class="form-label">Position</label>
-          <input type="text" name="title" class="form-control" />
+          <input type="text" name="title" class="form-control" 
+          pattern="^[A-Za-z\s]+$"
+          title="Position can only contain letters and spaces"/>
+          <div class="invalid-feedback">
+            Position can only contain letters and spaces.
+          </div>
         </div>
 
         <div class="mb-3">
@@ -162,7 +182,23 @@
       </form>
     </div>
   </div>
-
+  <!--Error Modal for Form Validation-->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Form Error</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Please check your inputs and correct the highlighted fields before generating your portfolio.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Okay</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- JavaScript for Dynamic Projects & Toggle Mode -->
   <script>
     function addProject() {
@@ -179,5 +215,19 @@
     }
   </script>
   <script src="/js/themeController.js"></script>
+  <script>
+    const form = document.getElementById("portfolioForm");
+
+    form.addEventListener("submit", function(event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+        errorModal.show();
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
