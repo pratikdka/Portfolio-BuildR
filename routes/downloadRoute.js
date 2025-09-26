@@ -12,32 +12,38 @@ router.post("/download", async (req, res) => {
   }
 
   try {
-    // Render EJS to HTML
-    const html = await ejs.renderFile(
+    // Render EJS with the selected theme from the form
+    const htmlRaw = await ejs.renderFile(
       path.join(__dirname, "../views/portfolio.ejs"),
       { ...data, theme: req.body.theme || "theme-light" }
     );
 
-    // Launch puppeteer
+    // Inject a <base> tag so /css/... and /images/... resolve while using setContent
+    const baseHref = `${req.protocol}://${req.get("host")}/`;
+    const html = htmlRaw.replace(
+      "<head>",
+      `<head><base href="${baseHref}">`
+    );
+
+    // Launch Puppeteer
     const browser = await puppeteer.launch({
       headless: "new",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
     const page = await browser.newPage();
 
-    // Load HTML content
+    // Load the HTML with a real base URL; wait for CSS to load
     await page.setContent(html, { waitUntil: "networkidle0" });
 
-    // Force screen media (so it looks like browser, not print mode)
+    // Use print media so your @media print rules (hide button & selector) apply
     await page.emulateMediaType("print");
 
-    // Inject CSS to hide download button in PDF
+    //  Hide controls in PDF even if page CSS missed it
     await page.addStyleTag({
       content: `
         @media print {
-          .download-btn-container {
-            display: none !important;
-          }
+          .download-btn-container,
+          .theme-selector { display: none !important; visibility: hidden !important; }
         }
       `,
     });
@@ -52,12 +58,11 @@ router.post("/download", async (req, res) => {
 
     await browser.close();
 
-    // Send PDF as download
+    // Send PDF
     res.set({
       "Content-Type": "application/pdf",
       "Content-Disposition": "attachment; filename=portfolio.pdf",
     });
-
     res.send(pdfBuffer);
   } catch (error) {
     console.error("Download error:", error);

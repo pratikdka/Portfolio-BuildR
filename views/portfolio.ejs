@@ -110,6 +110,15 @@
     max-height: 100vh;
     overflow: hidden;
   }
+
+  @media print {
+  .download-btn-container,
+  .theme-selector {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
 }
 
 .download-btn-container {
@@ -214,7 +223,7 @@
           <% projects.forEach(project => { %>
           <input type="hidden" name="projects[]" value='<%- JSON.stringify(project) %>'>
           <% }); %>
-          <input type="hidden" id="selectedTheme" name="theme" value="theme-light">
+          <input type="hidden" id="selectedTheme" name="theme" value="<%= theme || 'theme-light' %>">
           <button type="submit" class="download-btn">Download as PDF</button>
         </form>
     </div>
