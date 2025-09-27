@@ -29,3 +29,5 @@ function toggleMode() {
       window.location.href = mailto;
       return false;
     }
+
+    module.exports = { toggleMode };
