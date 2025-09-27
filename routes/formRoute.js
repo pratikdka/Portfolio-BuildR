@@ -5,13 +5,19 @@ const path = require("path");
 const fs = require("fs");
 const Portfolio = require("../models/Portfolio");
 
+// Make sure uploads folder exists
+const uploadDir = path.join(__dirname, "../public/uploads");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 // Storage engine
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/uploads");
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     cb(null, uniqueSuffix + path.extname(file.originalname));
   },
 });
@@ -44,12 +50,18 @@ router.post("/submit", upload.single("image"), async (req, res) => {
     // Convert uploaded image to Base64 if exists
     let imageBase64 = null;
     if (req.file) {
-      const filePath = path.join("public/uploads", req.file.filename);
-      const fileData = fs.readFileSync(filePath);
-      imageBase64 = `data:${req.file.mimetype};base64,${fileData.toString("base64")}`;
+      try {
+        const filePath = path.join(uploadDir, req.file.filename);
+        const fileData = fs.readFileSync(filePath);
+        imageBase64 = `data:${req.file.mimetype};base64,${fileData.toString("base64")}`;
+      } catch (err) {
+        console.error("Error reading uploaded file:", err);
+      }
+    } else {
+      console.log("No image uploaded → using null or fallback.");
     }
 
-    // Save to DB (imageBase64 is not stored, but you can extend schema if needed)
+    // Save to DB
     const newPortfolio = new Portfolio({
       fullName,
       email,
@@ -73,7 +85,7 @@ router.post("/submit", upload.single("image"), async (req, res) => {
       skills: skillArray,
       github,
       linkedin,
-      image: imageBase64,
+      image: imageBase64, // will be Base64 string if uploaded
       projects: projectArray,
     };
 

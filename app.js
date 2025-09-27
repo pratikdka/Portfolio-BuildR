@@ -12,8 +12,8 @@ mongoose.connect("mongodb://localhost:27017/porfolioBuildRDB")
   .catch((err) => console.error("MongoDB Error:", err));
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({limit: "10mb", extended: true }));
+app.use(express.json({limit:"10mb"}));
 app.use(express.static("public"));
 app.use("/feedback", feedbackRoute);
 
