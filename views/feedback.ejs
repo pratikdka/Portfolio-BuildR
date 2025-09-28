@@ -9,15 +9,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/css/app.css" />
 </head>
-<script src="/js/mailController.js"></script>
-<body class="bg-light text-dark">
 
+<body>
+   <script>
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark-mode");
+    }
+  </script>
   <div class="container mt-5">
     <!-- Header Row -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <a href="/" class="btn btn-outline-primary">← Back to Home</a>
-      <button onclick="toggleMode()" class="btn btn-outline-secondary">
-        🌓 <span id="mode-label">Dark Mode</span>
+      <button id="toggleBtn" onclick="toggleMode()" class="btn btn-outline-secondary">
+        🌙 Dark Mode
       </button>
     </div>
 
@@ -44,8 +48,7 @@
       </div>
     </div>
   </div>
-  <script>
-    
-  </script>
+  <script src="/js/themeController.js"></script>  
+  <script src="/js/mailController.js"></script>  
 </body>
 </html>
