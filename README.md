@@ -6,6 +6,11 @@ SIT725 group project for building a portfolio generator using Node.js, Express, 
 - Abhishek Acharya
 
 ---
+## Contributions
+**Pratik Khadka** – Implemented theme selector, PDF generation, backend routes (download, feedback), enhanced portfolio rendering, integration testing.
+
+**Abhishek Acharya** – Designed UI (homepage, form, feedback), integrated Mongoose database connection, implemented form validation, testing (UI + integration), and improved dark/light mode toggle across pages.
+
 ### Features
 
 Dynamic Themes – Multiple color themes (Light, Dark, Blue, Green, Purple) with live preview.
@@ -20,6 +25,10 @@ Testing – Unit and integration tests using Jest & Supertest.
 Responsive Design – Clean UI with Materialize CSS and custom theme.css.
 
 ---
+## Design Prototype
+The initial UI was designed in **Figma** before development.  
+[View Figma Design](https://www.figma.com/design/JeCwgiN2igjwdjMq5HdOXI/Untitled?node-id=0-1&t=JLv0wYEgIOGfYWOW-1) 
+
 
 ## Folder Structure
 portfolio-buildr/
@@ -80,9 +89,35 @@ Database: MongoDB (Mongoose)
 Testing: Jest, Supertest, jsdom
 Other Tools: Puppeteer (PDF generation), Multer (file upload), Express-session
 
+### Screenshots
+
+### Homepage
+![Homepage](./public/images/homeUI.png)
+
+### Portfolio Form
+![Form](./public/images/formUI.png)
+
+### Feedback Form
+![Feedback](./public/images/feedbackUI.png)
+
+### Dark Mode UI
+![DarkMode](./public/images/darkMode.png)
 ### Running Tests
 Jest + Supertest are used for Unit and Integration Testing
 Use the command : `npm test`
+
+### Test Coverage
+Our project uses **Jest** and **Supertest** for testing. The following test files are included:
+ **Integration Tests**
+  - `app.int.test.js` – Ensures the application and routes are running correctly.
+  - `feedback.int.test.js` – Validates feedback form submission and backend integration.
+  - `form.int.test.js` – Tests form submission, validation, and backend data handling.
+- **UI Tests**
+  - `form.ui.test.js` – Confirms form elements render correctly and validation triggers.
+  - `homepage.ui.test.js` – Ensures homepage UI components (buttons, links, toggles) render and work.
+- **Unit Tests**
+  - `mailController.test.js` – Tests email/feedback submission logic.
+  - `portfolioModel.test.js` – Tests database schema and Mongoose model validation.
 
 
 ### Future Improvements
